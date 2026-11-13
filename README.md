@@ -19,7 +19,7 @@ Tiene tres partes:
 
 | | |
 |---|---|
-| Video de demo | Pendiente: acá va el enlace |
+| Video de demo | [`video/delfOS_pitch.mp4`](video/delfOS_pitch.mp4): 56 segundos, sin audio |
 | Presentación | Pendiente: acá va el enlace |
 
 ## Probarlo
@@ -188,6 +188,7 @@ entrega/                 la salida del pipeline sobre el set final: los 4 archiv
 cache/                   las respuestas del modelo de IA en la corrida entregada: con ellas se repite sin clave
 comunicacion_datos.html  el tablero del set final: se abre con doble clic
 capturas/                dos imágenes del tablero, para este documento
+video/                   el video de demo
 pipeline/                el pipeline (python -m pipeline)
 tablero/                 el tablero (python -m tablero), con su sistema de diseño y la marca
 delfos/                  la aplicación (./abrir.sh)
