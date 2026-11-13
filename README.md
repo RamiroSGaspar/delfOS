@@ -27,6 +27,10 @@ Tiene tres partes:
 **Sin instalar nada.** Con el repositorio descargado, abrí [`comunicacion_datos.html`](comunicacion_datos.html)
 con doble clic: es el tablero del set final, con las tres respuestas en una pantalla.
 
+![El Resumen del tablero: qué circula y quién lo empuja](capturas/resumen.png)
+
+![Desde cuándo: una fila por narrativa, con su origen](capturas/desde_cuando.png)
+
 **La aplicación, en dos comandos.** Hace falta Python 3.9 o superior:
 
 ```bash
@@ -183,6 +187,7 @@ diseño, la marca, las pruebas y la documentación se hicieron del 11 al 13 de n
 entrega/                 la salida del pipeline sobre el set final: los 4 archivos del formato oficial
 cache/                   las respuestas del modelo de IA en la corrida entregada: con ellas se repite sin clave
 comunicacion_datos.html  el tablero del set final: se abre con doble clic
+capturas/                dos imágenes del tablero, para este documento
 pipeline/                el pipeline (python -m pipeline)
 tablero/                 el tablero (python -m tablero), con su sistema de diseño y la marca
 delfos/                  la aplicación (./abrir.sh)
