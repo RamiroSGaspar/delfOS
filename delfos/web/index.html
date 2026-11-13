@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es" data-theme="papel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__NOMBRE__</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,__ICONO__">
+<script>__TEMA__</script>
+<style>
+__SISTEMA__
+__ESTILO__
+</style>
+</head>
+<body class="tt tt-mesa">
+<nav class="tt-menu a-barra" aria-label="Menú principal">
+  <span class="a-marca">__LOGOTIPO__<span class="a-cursor" id="cursor" aria-hidden="true" hidden>_</span></span>
+  <span id="menus" class="a-menus"></span>
+  <span class="tt-menu__lado" id="abierto"></span>
+  <button type="button" id="tema" role="switch" aria-checked="false"></button>
+</nav>
+<div class="a-cuerpo">
+  <aside class="a-lateral">
+    <section class="tt-ventana" aria-label="Proyectos">
+      <header class="tt-ventana__barra">
+        <h2 class="tt-ventana__titulo">Proyectos</h2>
+        <span class="tt-ventana__controles"><button type="button" id="boton-nuevo" aria-label="Proyecto nuevo" title="Proyecto nuevo">[+]</button></span>
+      </header>
+      <div class="tt-ventana__cuerpo" id="lista"></div>
+    </section>
+  </aside>
+  <main id="centro" class="a-centro"></main>
+</div>
+<footer class="tt-estado" id="estado" aria-label="Estado"></footer>
+<script id="arranque" type="application/json">__ARRANQUE__</script>
+<script>
+__CODIGO__
+</script>
+</body>
+</html>

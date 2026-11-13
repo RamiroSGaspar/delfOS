@@ -1,0 +1,196 @@
+/* delfOS · el tablero. Lo propio de esta página, encima del sistema de diseño (tablero/sistema): usa solo sus valores. */
+* { box-sizing: border-box; }
+html { scroll-padding-top: 64px; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; }
+summary { cursor: pointer; }
+[hidden] { display: none !important; }
+
+/* La marca: el logotipo compuesto en tipo, con las dos últimas letras en video inverso. */
+.marca { font-weight: 700; white-space: nowrap; }
+.marca__os { display: inline-block; margin-left: .25ch; padding: 0 .4ch; background: var(--tinta); color: var(--hoja); }
+
+/* Nivel 1: la barra del sistema. En el archivo suelto la pone el tablero; dentro de la aplicación, la aplicación. */
+.d-barra { position: sticky; top: 0; z-index: 8; flex: none; }
+.d-barra__marca { display: flex; align-items: center; padding: 0 1ch; }
+.d-estado { position: sticky; bottom: 0; z-index: 8; flex: none; }
+.en-app .d-barra, .en-app .d-estado { display: none; }
+
+/* Nivel 2: las pestañas del tablero, más discretas. */
+.d-nivel2 { position: sticky; top: 21px; z-index: 7; flex: none; display: flex; align-items: flex-end; gap: 2ch;
+  padding: 8px 2ch 0; background: var(--mesa); }
+.en-app .d-nivel2 { top: 0; }
+.d-nivel2 .tt-pestanas { flex: 1; margin: 0; }
+.d-interruptor { appearance: none; height: 21px; margin: 0; border: 0; border-bottom: 1px solid var(--tinta); padding: 0 1ch;
+  background: none; color: var(--tinta-2); white-space: nowrap; cursor: pointer; }
+.d-interruptor:hover { color: var(--tinta); }
+
+.d-marco { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 38ch; gap: 0 3ch; align-items: start;
+  padding: 20px 2ch 40px; }
+.sin-nota .d-marco { grid-template-columns: minmax(0, 1fr); }
+.sin-nota .d-nota { display: none; }
+#vista { min-width: 0; container-type: inline-size; }
+#vista > section { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px 3ch; align-items: start; }
+#vista > section.d-mesa { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+#vista > section.d-corrida { grid-template-columns: 46ch minmax(0, 1fr); }
+.d-ancho { grid-column: 1 / -1; }
+.d-columna { display: grid; gap: 28px; min-width: 0; }
+@container (max-width: 780px) {
+  #vista > section.d-mesa, #vista > section.d-corrida { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Texto. */
+.d-respuesta { margin: 6px 0 12px; max-width: 76ch; }
+.d-mono { font: 400 13px/20px var(--font-mono); font-variant-ligatures: none; }
+.d-rotulo { margin: 16px 0 4px; font: 700 13px/20px var(--font-mono); }
+.d-rotulo:first-child { margin-top: 0; }
+.d-ayuda { margin: 0 0 8px; color: var(--tinta-2); max-width: 96ch; }
+.d-vacio { color: var(--tinta-3); }
+.d-id { color: var(--tinta-2); }
+.d-etiqueta { display: inline-block; margin-left: 1ch; padding: 0 .6ch; border: 1px solid var(--tinta-3); color: var(--tinta-2);
+  font: 400 11px/16px var(--font-mono); vertical-align: 2px; white-space: nowrap; }
+.d-enlace { appearance: none; margin: 8px 0 0; border: 0; padding: 0; background: none; cursor: pointer; }
+.d-leyenda { display: flex; flex-wrap: wrap; gap: 0 3ch; margin-top: 6px; color: var(--tinta-2); }
+.d-muestra { display: inline-block; width: 2ch; height: 10px; margin-right: 1ch; vertical-align: -1px; color: var(--tinta); }
+.tt-sello { margin: 2px 0 10px; }
+.tt-aviso { margin-top: 12px; }
+
+/* Lo que se puede tocar para ver su nota, y la ventana de notas. */
+[data-nota] { cursor: help; }
+button[data-nota] { cursor: pointer; }
+[data-nota]:hover { outline: 1px dashed var(--tinta-3); outline-offset: 2px; }
+[data-nota].elegido { outline: 1px solid var(--tinta); outline-offset: 2px; }
+span[data-nota] { text-decoration: underline dotted var(--tinta-3); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.d-nota { position: sticky; top: 64px; max-height: calc(100vh - 116px); }
+.en-app .d-nota { top: 44px; max-height: calc(100vh - 64px); }
+.d-nota .tt-titulo { margin: 2px 0 10px; font-size: 18px; line-height: 24px; }
+.d-nota__bloque { padding: 8px 1ch 10px; border-left: 3px solid var(--tinta); }
+.d-nota__bloque h4 { margin-bottom: 2px; font: 700 13px/20px var(--font-mono); }
+.d-nota__bloque p { font: 400 14px/22px var(--font-serif); font-variant-ligatures: normal; font-feature-settings: normal; }
+.d-nota__como { margin-top: 10px; border-left-color: var(--tinta-3); background: var(--banda); }
+
+/* Narrativas: una fila por narrativa, con su barra partida en apoya (tinta llena) y rechaza (gris con borde). */
+.d-postura__fila { display: grid; grid-template-columns: 4ch minmax(10ch, 1.3fr) minmax(8ch, 1fr) 7ch; column-gap: 1ch;
+  align-items: center; min-height: 20px; }
+.d-postura.is-completa .d-postura__fila { grid-template-columns: 4ch minmax(10ch, 1.5fr) minmax(8ch, 1fr) 7ch var(--reparto, 31ch); min-height: 24px; }
+.d-reparto { color: var(--tinta-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d-barra2 { display: flex; height: 12px; }
+.d-barra2 i, .d-muestra { display: inline-block; }
+.d-barra2 i { height: 100%; }
+.d-apoya { background: currentColor; }
+.d-rechaza { background: color-mix(in srgb, currentColor 26%, transparent); box-shadow: inset 0 0 0 1px currentColor; }
+.d-sinpostura { outline: 1px dashed currentColor; outline-offset: -1px; }
+.d-coordinado { background: var(--violeta); }
+li.is-sel > .tt-fila, li.is-sel > .tt-fila:hover { background: var(--resaltador); color: var(--sobre-resaltador); }
+li.is-sel .tt-postura__cifra, li.is-sel .d-id, li.is-sel .d-reparto, li.is-sel .d-nace { color: inherit; }
+.d-fija { cursor: help; }
+.d-seleccion { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--regla); min-height: 76px; }
+.d-seleccion .tt-titulo { margin-top: 2px; font-size: 18px; line-height: 24px; }
+
+/* El tiempo: una fila por narrativa, con barras de altura. */
+.d-tiempo__fila { display: grid; grid-template-columns: 4ch minmax(0, 26ch) minmax(100px, 1fr) 7ch 17ch; column-gap: 1ch;
+  align-items: center; }
+.d-tiempo__eje { pointer-events: none; }
+.d-graf { display: block; width: 100%; height: 30px; }
+.d-tiempo.is-alta .d-graf { height: 44px; }
+.d-tiempo.is-alta .d-tiempo__fila { grid-template-columns: 4ch minmax(0, 44ch) minmax(100px, 1fr) 7ch 17ch; }
+.d-graf.is-alto { height: 120px; }
+.d-graf .b { fill: currentColor; }
+.d-graf .b2 { fill: currentColor; fill-opacity: .3; }
+.d-graf .b3 { fill: currentColor; fill-opacity: .12; }
+.d-graf .coord { fill: var(--violeta); }
+.d-graf .dia { stroke: var(--regla); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.d-graf .origen { stroke: currentColor; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.d-graf .origen-marca { fill: currentColor; }
+.d-graf .zona { fill: transparent; }
+.d-graf .zona:hover { fill: color-mix(in srgb, var(--tinta) 14%, transparent); }
+.d-eje { position: relative; height: 18px; color: var(--tinta-3); font-size: 11px; line-height: 16px; }
+.d-eje span { position: absolute; top: 0; padding-left: .5ch; border-left: 1px solid var(--regla); white-space: nowrap; }
+.d-nace { color: var(--tinta-2); white-space: nowrap; }
+.d-nace.is-tarde { color: var(--tinta); font-weight: 700; }
+.d-todos { color: var(--tinta-3); }
+@container (max-width: 700px) {
+  .d-tiempo__fila { grid-template-columns: 4ch minmax(80px, 1fr) 7ch; }
+  .d-tiempo__fila > .tt-postura__titulo, .d-tiempo__fila > .d-nace { display: none; }
+  .d-postura.is-completa .d-postura__fila { grid-template-columns: 4ch minmax(10ch, 1.3fr) minmax(8ch, 1fr) 7ch; }
+  .d-postura.is-completa .d-reparto { display: none; }
+}
+
+/* La operación contra las demás cuentas, y el pajar. */
+.d-pares { display: grid; gap: 10px; margin: 6px 0 10px; }
+.d-par__que { color: var(--tinta-2); }
+.d-par__fila { display: grid; grid-template-columns: 13ch minmax(3ch, 1fr) 12ch; column-gap: 1ch; align-items: center; }
+.d-par__barra { height: 10px; box-shadow: inset 0 -1px 0 var(--regla); }
+.d-par__barra i { display: block; height: 100%; min-width: 2px; background: currentColor; }
+.d-par__valor { text-align: right; white-space: nowrap; }
+.d-pajar { margin: 10px 0 4px; white-space: normal; word-break: break-all; font-size: 9px; line-height: 8px; letter-spacing: 1.5px; }
+.d-pajar b { font-weight: 700; }
+
+/* La ficha de una narrativa. */
+.tt-campos { margin: 10px 0 4px; }
+.tt-campos dd small { display: block; font: 400 11px/16px var(--font-mono); color: var(--tinta-2); }
+.d-frases { display: flex; flex-wrap: wrap; gap: 4px 1ch; }
+.d-frases span { padding: 0 1ch; border: 1px solid var(--regla); font: 400 14px/20px var(--font-serif); }
+.d-dos { display: grid; grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr)); gap: 12px 3ch; }
+.d-lado h4 { margin-bottom: 4px; font: 700 13px/20px var(--font-mono); }
+.d-cita { margin-bottom: 8px; }
+.d-cita .tt-cita { font-size: 15px; line-height: 22px; overflow-wrap: anywhere; }
+.d-cita small { display: block; font: 400 11px/16px var(--font-mono); color: var(--tinta-2); }
+.d-barras { display: grid; grid-template-columns: minmax(12ch, 34ch) minmax(6ch, 1fr) 20ch; gap: 2px 1ch; align-items: center; }
+.d-barras .tt-postura__titulo { white-space: normal; }
+.d-barras .barra { height: 10px; box-shadow: inset 0 -1px 0 var(--regla); }
+.d-barras .barra i { display: block; height: 100%; min-width: 2px; background: currentColor; }
+.d-barras .cuanto { text-align: right; color: var(--tinta-2); white-space: nowrap; }
+.d-repite li { display: grid; grid-template-columns: 19ch minmax(0, 1fr); column-gap: 1ch; padding: 2px 0; border-top: 1px solid var(--regla); }
+.d-repite li > span:first-child { color: var(--tinta-2); }
+
+/* Tablas, filtros y avisos. */
+.tt-tabla th button { appearance: none; margin: 0; border: 0; padding: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+.tt-tabla th[aria-sort="descending"] button::after { content: " ↓"; }
+.tt-tabla th[aria-sort="ascending"] button::after { content: " ↑"; }
+.tt-tabla td.largo { min-width: 26ch; overflow-wrap: anywhere; }
+.tt-tabla td.lectura { white-space: normal; }
+.tt-tabla tr.is-marcada td:first-child { box-shadow: inset 3px 0 0 var(--violeta); }
+.tt-tabla td.is-marca { font-weight: 700; }
+.tt-tabla tr.is-base td { font-weight: 700; border-bottom: 1px solid var(--tinta); }
+.tt-tabla th small { display: block; font-weight: 400; color: var(--tinta-2); }
+.d-fuentes th.num { min-width: 9ch; max-width: 13ch; white-space: normal; vertical-align: bottom; }
+.d-fuentes td.largo { min-width: 18ch; }
+.d-filtros { display: flex; flex-wrap: wrap; gap: 8px 2ch; align-items: center; margin-bottom: 10px; }
+.d-filtros select, .d-filtros input[type="search"] { height: 22px; max-width: 44ch; border: 1px solid var(--tinta); border-radius: 0;
+  padding: 0 1ch; background: var(--hoja); color: var(--tinta); font: inherit; }
+.d-filtros label { display: flex; align-items: center; gap: 1ch; }
+.d-paginas { display: flex; flex-wrap: wrap; gap: 8px 2ch; align-items: center; margin-top: 10px; }
+.d-aviso { display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 1ch; padding: 4px 0; }
+.d-aviso > b { font-weight: 700; }
+.d-aviso p { max-width: 84ch; font: 400 15px/22px var(--font-serif); font-variant-ligatures: normal; font-feature-settings: normal; }
+.d-aviso details { margin-top: 2px; color: var(--tinta-2); }
+.d-lista li { position: relative; margin: 4px 0; padding-left: 2ch; max-width: 92ch; font: 400 15px/22px var(--font-serif);
+  font-variant-ligatures: normal; font-feature-settings: normal; }
+.d-lista li::before { content: "·"; position: absolute; left: .5ch; font-family: var(--font-mono); }
+dl.d-ficha { display: grid; grid-template-columns: 30ch minmax(0, 1fr); gap: 2px 2ch; }
+dl.d-ficha dt { color: var(--tinta-2); }
+dl.d-ficha dd { overflow-wrap: anywhere; }
+
+/* El recibo de la corrida. */
+.tt-recibo { justify-self: start; }
+.d-recibo__etapa { display: grid; grid-template-columns: 23ch minmax(3ch, 1fr) 6ch; column-gap: 1ch; align-items: center; }
+.d-recibo__etapa .barra i { display: block; height: 9px; min-width: 1px; background: currentColor; }
+.d-recibo__etapa > :last-child { text-align: right; }
+.d-recibo__chico { color: var(--tinta-2); font-size: 11px; line-height: 16px; }
+
+.d-pie { color: var(--tinta-3); font-size: 11px; line-height: 16px; }
+
+@media (max-width: 1000px) {
+  .d-marco { grid-template-columns: minmax(0, 1fr); }
+  .d-nota, .en-app .d-nota { position: fixed; top: auto; right: 1ch; bottom: 28px; z-index: 9; width: min(44ch, calc(100vw - 2ch));
+    max-height: 55vh; box-shadow: var(--sombra-flotante); }
+}
+@media print {
+  .d-nivel2, .d-nota, .d-enlace { display: none; }
+  .d-marco { display: block; padding: 0; }
+  #vista > section[hidden] { display: grid !important; }
+  #vista > section { margin-bottom: 28px; }
+}

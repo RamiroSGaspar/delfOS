@@ -1,0 +1,10 @@
+{
+  "comentarios_procesados": 150000,
+  "segundos": 21.425,
+  "tokens_ia": 19879,
+  "usd_ia": 0.004396,
+  "usd_por_mil_comentarios": 2.9e-05,
+  "hardware": "Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz, 8 hilos, 15,3 GiB de RAM, Linux 7.0.0-43-generic",
+  "almacenamiento": "Los 4 archivos del set (CSV con gzip) se leen una vez a tablas en memoria (Polars y NumPy); sin base de datos. La salida son CSV en disco y la caché del modelo, un archivo JSONL",
+  "notas": "Pipeline 1.0.0: narrativas por estructura (núcleos, familias y puente por respuestas con Louvain), lado que apoya, origen \"3 en 3 horas\" y coordinación en cuatro capas con alarma por barajado. Modelo claude-haiku-5-5 en N8 (lado que apoya, solo con margen chico), N12 (plan B sobre el ruido) y N10 (títulos): 16 pedidos distintos (16 respuestas usadas), 0 de la caché y 16 llamadas a la API en esta corrida (USD 0.004396 gastados ahora; tokens_ia y usd_ia son el costo de todos los pedidos, vengan o no de la caché). Segundos: tiempo de pared del comando, de la lectura a la escritura; memoria pico 861 MiB. Etapas en segundos: lectura 0,48, preparacion 3,15, acompanamientos 0,22, familias 1,39, puente 0,14, coordinacion 4,36, lado_que_apoya 0,19, espera_del_modelo 7,57, plan_b 0,50, titulos 0,44, lados 0,02, origen 0,04, idioma 0,16, perfil 0,03, escritura 0,18. Perfil de entrada (P2): 1 avisos: coordinación, capa R."
+}

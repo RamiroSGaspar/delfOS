@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es" data-theme="papel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__NOMBRE__ · tablero</title>
+<script>__TEMA__</script>
+<style>
+__SISTEMA__
+__ESTILO__
+</style>
+</head>
+<body class="tt tt-mesa">
+<nav class="tt-menu d-barra" aria-label="delfOS">
+  <span class="d-barra__marca">__LOGOTIPO__</span>
+  <span class="tt-menu__lado" id="set"></span>
+  <button type="button" id="tema" role="switch" aria-checked="false"></button>
+</nav>
+<div class="d-nivel2">
+  <div class="tt-pestanas" id="pestanas" role="tablist" aria-label="Las secciones del tablero"></div>
+  <button type="button" class="d-interruptor" id="ver-notas" role="switch" aria-checked="true"></button>
+</div>
+<div class="d-marco">
+  <main id="vista"></main>
+  <aside class="tt-ventana d-nota" id="nota" aria-live="polite" aria-label="Notas"></aside>
+</div>
+<footer class="tt-estado d-estado" id="estado" aria-label="Estado del análisis"></footer>
+<script id="datos" type="application/json">__DATOS__</script>
+<script id="textos" type="application/json">__TEXTOS__</script>
+<script>
+__CODIGO__
+</script>
+</body>
+</html>

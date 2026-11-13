@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="delfOS">
+<rect x="2.75" y="2.75" width="58.5" height="58.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<rect x="6.25" y="6.25" width="51.5" height="51.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<path d="M30.5 16.5H15l13.5 15" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter"/>
+<path d="M17 31.5h10l4.5 4.5v9L27 49.5H17L12.5 45v-9z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter"/>
+<g fill="currentColor"><rect x="36" y="45.5" width="4" height="4" opacity=".5"/><rect x="41.5" y="45.5" width="4" height="4"/><rect x="41.5" y="40" width="4" height="4"/><rect x="47" y="45.5" width="4" height="4"/><rect x="47" y="40" width="4" height="4"/><rect x="47" y="34.5" width="4" height="4"/><rect x="52.5" y="45.5" width="4" height="4"/><rect x="52.5" y="40" width="4" height="4"/><rect x="52.5" y="34.5" width="4" height="4"/><rect x="52.5" y="29" width="4" height="4"/></g>
+</svg>

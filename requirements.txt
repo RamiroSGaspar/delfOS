@@ -1,0 +1,9 @@
+# Bibliotecas del pipeline (python -m pipeline), con las versiones con que se probó (Python 3.12).
+polars==2.1.0
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+networkx==3.7
+anthropic==2.8.0
+# Solo para las pruebas automáticas (python -m pytest).
+pytest==9.2.0

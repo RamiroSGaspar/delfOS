@@ -1,0 +1,216 @@
+{
+  "consejos": [
+    "El análisis no lee comentario por comentario con IA. Primero mira quién le responde a quién: quien responde a un comentario habla de lo mismo, aunque use otras palabras.",
+    "Cada texto distinto se analiza una sola vez. Si mil cuentas pegan la misma frase, se trabaja una vez y el resultado se reparte entre todas.",
+    "Una respuesta con contenido casi siempre discute al comentario que responde. Así se separan los dos lados de cada narrativa: quienes la afirman y quienes la refutan.",
+    "Un «tal cual» o un «exacto» no dice nada por sí solo: hereda la narrativa y la postura del comentario al que acompaña.",
+    "El origen de una narrativa no es su primer comentario suelto: es el primero al que le siguen otros dos en menos de tres horas.",
+    "Una ráfaga de comentarios no alcanza para hablar de coordinación. Lo que delata a una operación es la repetición: las mismas cuentas, juntas, una y otra vez.",
+    "La IA entra solo en tres momentos: decidir qué lado apoya cuando los dos están parejos, redactar los títulos y revisar si en el ruido quedó una narrativa sin ver.",
+    "Ruido no es error: son reacciones, saludos y temas sueltos que no pertenecen a ninguna narrativa.",
+    "En el tablero, tocá cualquier cifra, gráfico o tabla: a la derecha vas a ver qué muestra y cómo se obtiene.",
+    "Si volvés a analizar los mismos datos, las respuestas de la IA salen de la caché del proyecto: el resultado es el mismo y no vuelve a gastar."
+  ],
+  "notas": {
+    "inicio": {
+      "titulo": "Cómo leer el tablero",
+      "que": "Tocá cualquier cifra, fila, gráfico o tabla. Acá aparece qué muestra ese elemento.",
+      "como": "Y acá, cómo lo obtiene el análisis: de qué datos sale y con qué regla."
+    },
+    "cifra_comentarios": {
+      "titulo": "Comentarios",
+      "que": "Cuántos comentarios tiene el set que se analizó: {comentarios}. Van del {desde} al {hasta}, en {publicaciones} de {fuentes}.",
+      "como": "Se cuentan las filas del archivo de comentarios. Si un identificador se repite, queda la primera fila. Ningún comentario se descarta por tener datos sucios: una fecha que no se puede leer o una respuesta a un comentario que no existe se anotan, y el comentario sigue en el análisis."
+    },
+    "cifra_narrativas": {
+      "titulo": "Narrativas detectadas",
+      "que": "Cuántas narrativas distintas se detectaron: {narrativas}. Una narrativa es una afirmación que se repite con distintas palabras, junto con quienes la discuten. {con_narrativa} comentarios ({pct_con_narrativa} del total) pertenecen a alguna.",
+      "como": "No se parte de una lista de temas. Primero se juntan los textos casi iguales. Después se mira quién le responde a quién: los grupos de textos que se responden mucho entre sí forman una narrativa. La cantidad de narrativas sale sola de los datos."
+    },
+    "cifra_ruido": {
+      "titulo": "Ruido",
+      "que": "Qué parte de los comentarios no pertenece a ninguna narrativa: {ruido} comentarios, el {pct_ruido} del total. Son reacciones, saludos, temas sueltos o comentarios que no se pudieron ubicar.",
+      "como": "Es lo que queda afuera después de armar las narrativas: comentarios cuyo texto no participa de ninguna discusión con respuestas y que tampoco responden a un comentario con narrativa. Con clave de IA, un paso más revisa los grupos grandes de ese resto, por si esconden una narrativa que nadie respondió."
+    },
+    "cifra_coordinadas": {
+      "titulo": "Cuentas con señales de coordinación",
+      "que": "Cuántas cuentas muestran señales de coordinación: {cuentas_coordinadas} de {cuentas} ({pct_coordinadas}), en {operaciones}. Una operación es un grupo de cuentas que actúan juntas. Es conducta observada en este set: no identifica bots ni autoría y no prueba intención.",
+      "como": "Se buscan cuentas que repiten juntas un mismo comportamiento: pegar los mismos textos, o comentar las mismas publicaciones con minutos de diferencia, una y otra vez y mucho más de lo esperable por azar. Una coincidencia sola no alcanza. Cada señal se prueba además contra el mismo set con las cuentas mezcladas al azar: si ahí aparece igual, no distingue nada y se apaga."
+    },
+    "narrativa": {
+      "titulo": "Una narrativa",
+      "que": "La narrativa «{titulo}» tiene {comentarios} comentarios: el {pct} de los que tienen narrativa. La apoyan {apoya} ({pct_apoya}) y la rechazan {rechaza} ({pct_rechaza}). El largo de la barra es la cantidad de comentarios; los colores, las dos posturas.",
+      "como": "Un comentario pertenece a la narrativa si su texto es de los grupos que la forman, o si responde a un comentario de la narrativa. La postura sale de las respuestas: una respuesta con contenido queda del lado contrario al comentario que responde, y una respuesta corta que solo acompaña («tal cual») queda del mismo lado. El lado que apoya es el que tiene más comentarios que no responden a nadie; si los dos lados están parejos y hay clave de IA, lo decide la IA leyendo ejemplos de cada uno."
+    },
+    "postura": {
+      "titulo": "Apoyan y rechazan",
+      "que": "De los {comentarios} comentarios de la narrativa, {apoya} la apoyan ({pct_apoya}) y {rechaza} la rechazan ({pct_rechaza}). {decide}",
+      "como": "Una respuesta con contenido queda del lado contrario al comentario que responde; una respuesta corta que solo acompaña queda del mismo lado. Así cada narrativa se parte en dos lados. El lado que apoya es el que tiene más comentarios que no responden a nadie. Si los dos lados están parejos y hay clave de IA, la IA lee ejemplos de cada lado, dos veces y en distinto orden, y decide solo si las dos respuestas coinciden."
+    },
+    "titulo": {
+      "titulo": "Título y frases clave",
+      "que": "El título resume la afirmación de la narrativa. Las frases clave son las formas más repetidas de decirla entre quienes la apoyan. {de_ia}",
+      "como": "Con clave de IA, el modelo redacta el título a partir de esas frases, y se acepta solo si no agrega palabras que no estén en los comentarios. Si no hay clave, o si el título no pasa ese control, queda la frase más repetida tal como la deja la limpieza del texto: en minúsculas y sin tildes. Esos títulos van entre comillas y con la etiqueta «frase más repetida»."
+    },
+    "origen": {
+      "titulo": "Origen",
+      "que": "Cuándo apareció la narrativa: {origen}, en la hora del set ({zona}).",
+      "como": "El origen de una narrativa es su primer comentario propio al que le siguen al menos otros 2 en menos de 3 horas. Un comentario suelto y aislado, horas antes, no cuenta. Es una estimación del análisis, no un dato del set."
+    },
+    "cuentas_narrativa": {
+      "titulo": "Cuentas distintas",
+      "que": "{cuentas} cuentas distintas escribieron al menos un comentario de esta narrativa.",
+      "como": "Se cuentan las cuentas distintas entre los comentarios de la narrativa."
+    },
+    "coordinados_narrativa": {
+      "titulo": "De cuentas con señales de coordinación",
+      "que": "Qué parte de esta narrativa escribieron cuentas con señales de coordinación: {coordinados} de sus {comentarios} comentarios ({pct}).",
+      "como": "Se cruzan los comentarios de la narrativa con las cuentas que quedaron en alguna operación."
+    },
+    "crecimiento": {
+      "titulo": "Cómo creció",
+      "que": "Cuántos comentarios tuvo «{titulo}» en cada tramo de {tramo}. La marca ▼ señala su origen estimado: {origen}. El tramo con más comentarios tuvo {pico}.",
+      "como": "Cada comentario se cuenta en el tramo de su fecha, en la hora del set ({zona}). Los comentarios sin una fecha legible no aparecen. En la lista, cada fila usa su propia escala: sirve para ver la forma (cuándo creció y si se apaga), no para comparar tamaños entre filas."
+    },
+    "tiempo_total": {
+      "titulo": "Todos los comentarios en el tiempo",
+      "que": "Todos los comentarios del set por tramo de {tramo}: los que tienen narrativa y el ruido. El tramo con más comentarios tuvo {pico}.",
+      "como": "Cada comentario se cuenta en el tramo de su fecha, en la hora del set ({zona}). Los comentarios sin una fecha legible no aparecen."
+    },
+    "ejemplos": {
+      "titulo": "Qué dice cada lado",
+      "que": "Los comentarios con más «me gusta» de cada lado, sin repetir textos. Sirven para leer con qué palabras se dice la narrativa y con cuáles se la discute.",
+      "como": "Se ordenan los comentarios de cada lado por cantidad de «me gusta» y se muestran los primeros textos distintos. No los eligió una persona ni la IA."
+    },
+    "fuentes_narrativa": {
+      "titulo": "En qué fuentes circula",
+      "que": "En qué fuentes están las publicaciones donde aparece esta narrativa, y qué parte de sus comentarios hay en cada una.",
+      "como": "Cada comentario se cuenta en la fuente de la publicación donde se escribió. Se dice que la narrativa se concentra en una fuente cuando pesa ahí al menos {umbral} veces lo que la fuente pesa en el total."
+    },
+    "tabla_narrativas": {
+      "titulo": "Todas las narrativas, en tabla",
+      "que": "Todas las narrativas con todas sus cifras. Tocando el nombre de una columna, la tabla se ordena por ella.",
+      "como": "Cada fila reúne lo que el análisis dejó para esa narrativa: cuántos comentarios tiene, cuántos la apoyan y la rechazan, cuántas cuentas distintas escribieron, cuándo apareció y cuántos de sus comentarios son de cuentas coordinadas."
+    },
+    "operacion": {
+      "titulo": "Una operación",
+      "que": "La operación {etiqueta} reúne {cuentas} con señales de coordinación. Escribieron {comentarios}: {por_cuenta} por cuenta, contra {por_cuenta_demas} de las demás cuentas del set.",
+      "como": "Una operación une a las cuentas que comparten una misma señal de coordinación: los mismos textos repetidos, o las mismas publicaciones comentadas con minutos de diferencia. Si dos grupos tienen cuentas en común, forman una sola operación."
+    },
+    "empuja": {
+      "titulo": "Qué empuja",
+      "que": "En qué narrativas escriben las cuentas de la operación y con qué postura. El porcentaje dice qué parte de esa narrativa viene de la operación.",
+      "como": "Se cuentan los comentarios de las cuentas de la operación, por narrativa y por postura."
+    },
+    "repite": {
+      "titulo": "Lo que más repite",
+      "que": "Los textos que más repiten las cuentas de la operación: cuántas veces aparece cada uno y entre cuántas cuentas.",
+      "como": "Se cuentan los textos idénticos entre los comentarios de la operación."
+    },
+    "cuando_actua": {
+      "titulo": "Cuándo actúa",
+      "que": "Cuándo escriben las cuentas de la operación, por tramo de {tramo}. El tramo con más actividad tuvo {pico}.",
+      "como": "Cada comentario de la operación se cuenta en el tramo de su fecha, en la hora del set ({zona})."
+    },
+    "cuentas_operacion": {
+      "titulo": "Las cuentas, una por una",
+      "que": "Las cuentas de la operación, una por una, con sus datos y su actividad en el set. Tocando el nombre de una columna, la tabla se ordena por ella.",
+      "como": "El usuario, la fecha de creación, los seguidores y los seguidos vienen del archivo de cuentas del set. Los comentarios se cuentan en el archivo de comentarios."
+    },
+    "senales": {
+      "titulo": "Las cuatro señales de coordinación",
+      "que": "Cuántas cuentas marcó cada una de las cuatro señales en esta corrida, y cuántas marcó con las cuentas mezcladas al azar. Una cuenta puede estar marcada por más de una señal.",
+      "como": "Texto propio: pocas cuentas que repiten mucho un mismo texto o hashtag. Sincronía por narrativa y sincronía por publicación: pares de cuentas que comentan lo mismo con menos de 15 minutos de diferencia, en 4 publicaciones o más, muy por encima del azar. Respuestas en grupo: cuentas que se responden entre sí. Si una señal marca con las cuentas mezcladas la mitad o más de lo que marca con el set real, no distingue nada: se apaga y queda avisado."
+    },
+    "parte_coordinada": {
+      "titulo": "Parte de cada narrativa que viene de cuentas con señales",
+      "que": "Qué parte de los comentarios de cada narrativa escribieron cuentas con señales de coordinación. La barra más larga equivale a {max}: la escala está ampliada para que se vea.",
+      "como": "Se cruzan los comentarios de cada narrativa con las cuentas que quedaron en alguna operación."
+    },
+    "fuentes": {
+      "titulo": "Narrativas por fuente",
+      "que": "Cómo se reparten los comentarios de cada narrativa entre las fuentes. Cada fila suma 100 %. La primera fila es la referencia: el reparto de todos los comentarios del set. La marca ▲ señala dónde una narrativa se concentra.",
+      "como": "Cada comentario se cuenta en la fuente de la publicación donde se escribió. Una celda lleva ▲ cuando la narrativa pesa en esa fuente al menos {umbral} veces lo que la fuente pesa en el total y tiene {minimo} comentarios o más ahí."
+    },
+    "avisos": {
+      "titulo": "Avisos del análisis",
+      "que": "Lo que el motor avisó sobre este set, dicho en llano. Un aviso no frena el análisis: señala algo a tener en cuenta al leer el resultado. El texto original del motor queda plegado debajo.",
+      "como": "Antes de analizar, el motor mide el set (cuántas respuestas tiene, cuántos textos distintos, cuánto concentra la publicación más grande) y lo compara con un set de referencia. También avisa cuando apaga una señal de coordinación: prueba cada señal con las cuentas mezcladas al azar y, si ahí marca la mitad o más de lo que marca con las reales, no distingue nada."
+    },
+    "limites": {
+      "titulo": "Cómo leer las cifras",
+      "que": "Lo que hay que tener presente al leer las cifras de este tablero.",
+      "como": "El tablero muestra lo que detectó el análisis. No lo compara con una respuesta correcta, porque el set no la trae."
+    },
+    "costo": {
+      "titulo": "El recibo de la corrida",
+      "que": "Cuánto se procesó, cuánto tardó cada etapa, cuánto costó la IA y en qué equipo corrió. La cifra grande es el costo de IA por cada mil comentarios.",
+      "como": "El motor mide el tiempo de reloj de cada etapa y suma los tokens de todos los pedidos al modelo de IA, al precio de la API. Queda en el archivo costo.json del resultado y en el informe de la corrida. La suma de las etapas puede no dar el total: algunas corren a la vez."
+    },
+    "uso_ia": {
+      "titulo": "Uso de la IA",
+      "que": "Cómo se usó la IA en la corrida: cuántos pedidos distintos hubo, cuántos fueron a la API, cuántos salieron de la caché y cuántos fallaron.",
+      "como": "La IA entra en tres momentos: decidir qué lado apoya cuando los dos están parejos, redactar los títulos y revisar el ruido. Un pedido repetido sale de la caché y no se paga dos veces. Si un pedido falla, esa parte usa su respaldo y el análisis sigue."
+    },
+    "set_entrada": {
+      "titulo": "El set de entrada",
+      "que": "Las medidas del set de entrada, cada una al lado de su valor en el set de referencia.",
+      "como": "Se miden antes de analizar. Cuando una medida queda por debajo de la mitad o por encima del doble de la referencia, el motor avisa: el set es de otro tipo y conviene leer el resultado con más cuidado."
+    },
+    "parametros": {
+      "titulo": "Parámetros del motor",
+      "que": "Los valores con que corrió el motor. Son fijos: no se ajustan a cada set.",
+      "como": "Se eligieron con pruebas sobre varios sets, mirando el promedio y el peor caso, y quedaron congelados."
+    },
+    "archivos": {
+      "titulo": "Los archivos del resultado",
+      "que": "Los archivos que deja el análisis. El tablero se arma leyéndolos: no agrega ni cambia ningún dato.",
+      "como": "Los escribe el motor al terminar. Tienen el formato que pide el desafío."
+    },
+    "comentarios": {
+      "titulo": "Comentarios",
+      "que": "Los comentarios del set, uno por uno, con la narrativa y la postura que les asignó el análisis. Se pueden filtrar por narrativa, por postura, por texto y por cuentas con señales de coordinación.",
+      "como": "Es el archivo de comentarios del resultado, unido al texto, la cuenta y la fuente de cada comentario en el set."
+    },
+    "origen_todas": {
+      "titulo": "Cuándo nace cada narrativa",
+      "que": "Qué narrativas ya circulaban el primer día del set y cuáles aparecen después. Una narrativa que nace a mitad del período es una narrativa emergente.",
+      "como": "El origen de una narrativa es su primer comentario propio al que le siguen al menos otros 2 en menos de 3 horas. Un comentario suelto y aislado, horas antes, no cuenta. Es una estimación del análisis, no un dato del set."
+    },
+    "tabla_origen": {
+      "titulo": "Nacimiento y pico",
+      "que": "Para cada narrativa: cuándo nace, cuándo aparece su primer comentario y cuál fue su tramo con más comentarios. Tocando el nombre de una columna, la tabla se ordena por ella.",
+      "como": "«Nace» es el origen estimado: el primer comentario propio al que le siguen otros 2 en menos de 3 horas. «Primer comentario» es el más antiguo de la narrativa, aunque esté aislado. El pico es el tramo de {tramo} con más comentarios."
+    },
+    "tabla_dias": {
+      "titulo": "Comentarios por día",
+      "que": "Cuántos comentarios tuvo cada narrativa en cada día del set, con el ruido en la última fila. Son los números de la figura de arriba.",
+      "como": "Cada comentario se cuenta en el día de su fecha, en la hora del set ({zona})."
+    },
+    "par_antiguedad": {
+      "titulo": "Antigüedad de las cuentas",
+      "que": "Qué tan nuevas son las cuentas de la operación: al empezar el set, la mitad tenía {dias} o menos. En las demás cuentas, ese valor es de {dias_demas}.",
+      "como": "A la fecha del primer comentario del set se le resta la fecha de creación de cada cuenta, y se toma el valor del medio (la mediana). La antigüedad no se usa para detectar la coordinación: se muestra como contexto."
+    },
+    "par_por_cuenta": {
+      "titulo": "Comentarios por cuenta",
+      "que": "Cuánto escribe cada cuenta, en promedio: {por_cuenta} comentarios las de la operación y {por_cuenta_demas} las demás.",
+      "como": "Los comentarios de cada grupo, divididos por su cantidad de cuentas. No se usa para detectar la coordinación: se muestra como contexto."
+    },
+    "par_concentracion": {
+      "titulo": "Concentración en una narrativa",
+      "que": "Qué parte de sus comentarios dedica cada grupo a «{titulo}» ({narrativa}), la narrativa donde más escribe la operación: {de_la_op} la operación y {de_las_demas} las demás cuentas.",
+      "como": "Para la operación: sus comentarios en esa narrativa sobre todos sus comentarios. Para las demás cuentas, lo mismo. Cuando la operación le dedica mucho más que el resto, la está empujando."
+    },
+    "par_apoyo": {
+      "titulo": "Apoyo a esa narrativa",
+      "que": "De los comentarios que cada grupo escribe en «{titulo}» ({narrativa}), cuántos la apoyan: {de_la_op} en la operación y {de_las_demas} en las demás cuentas.",
+      "como": "Los comentarios que apoyan sobre el total de comentarios de cada grupo en esa narrativa. La postura sale de la estructura de las respuestas, igual que para todas las cuentas."
+    },
+    "pajar": {
+      "titulo": "Todas las cuentas",
+      "que": "Todas las cuentas del set en {celdas} celdas de {por_celda} cuentas cada una. La marca ◆ señala las {con_marca} celdas donde hay al menos una cuenta con señales de coordinación. Sirve para ver qué pocas son.",
+      "como": "Las cuentas se ordenan por su identificador y se agrupan de a {por_celda}. La posición de cada marca no significa nada: el orden de los identificadores no es un orden en el tiempo ni por parecido."
+    }
+  }
+}

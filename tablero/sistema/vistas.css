@@ -1,0 +1,49 @@
+/* delfOS · Teletipo — piezas de las vistas (escritorio, árbol, filas que se eligen). Va después de tokens.css y bundle.css. */
+/* ── Piezas de las vistas ──────────────────────────────────── */
+.tt-lectura, .tt-pregunta, .tt-cita, .tt-postura__titulo, .tt-nota, .tt-tabla .lectura, .tt-titulo { font-variant-ligatures: normal; font-feature-settings: normal; }
+.tt-titulo { margin: 0; font: 600 21px/28px var(--font-serif); color: var(--tinta); }
+.tt-fila { appearance: none; display: block; width: 100%; margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.tt-fila:hover { background: var(--banda); }
+.tt-postura--botones li { display: block; }
+.tt-postura__fila { display: grid; grid-template-columns: 3ch minmax(12ch, 1fr) 40ch 7ch; column-gap: 1ch; align-items: baseline; }
+.tt-postura li.is-sel .tt-postura__fila > * { background: var(--resaltador); color: var(--sobre-resaltador); }
+.tt-sabana .tt-fila { display: grid; }
+.tt-sabana .tt-fila:hover .tt-sabana__tira { background: var(--banda); }
+.tt-sabana__fila.is-sel:hover .tt-sabana__tira { background: var(--resaltador); }
+.tt-desborde { overflow-x: auto; max-width: 100%; }
+.tt-escritorio { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px; padding: 24px 2ch 28px; }
+.tt-escritorio__lateral { flex: 1 1 34ch; min-width: 0; }
+.tt-escritorio__centro { flex: 999 1 560px; min-width: 0; display: grid; gap: 32px 24px; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: start; }
+.tt-ancho { grid-column: 1 / -1; }
+.tt-dos { display: grid; gap: 32px 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.tt-tres { display: grid; gap: 32px 24px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+@media (max-width: 1180px) { .tt-escritorio__centro, .tt-dos, .tt-tres { grid-template-columns: minmax(0, 1fr); } }
+.tt-arbol { margin: 0; padding: 0; list-style: none; }
+.tt-arbol li { white-space: pre; }
+.tt-arbol .tt-fila { display: flex; gap: 1ch; }
+.tt-arbol__grupo { margin: 12px 0 2px; font-weight: 700; }
+.tt-arbol__grupo:first-child { margin-top: 0; }
+.tt-arbol .is-abierta { background: var(--tinta); color: var(--hoja); }
+.tt-arbol li.is-sel .tt-fila { background: var(--resaltador); color: var(--sobre-resaltador); }
+.tt-arbol li.is-sel .tt-fila > * { color: var(--sobre-resaltador); }
+.tt-campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(17ch, 1fr)); gap: 8px 2ch; margin: 0; }
+.tt-campos dt { color: var(--tinta-2); }
+.tt-campos dd { margin: 0; font: 500 24px/28px var(--font-mono); }
+.tt-hueco { color: var(--tinta-3); }
+.tt-aviso { margin: 0; padding: 8px 1.5ch; box-shadow: inset 0 0 0 1px var(--violeta); background: var(--violeta-velo); color: var(--violeta); font: 400 15px/22px var(--font-serif); font-variant-ligatures: normal; font-feature-settings: normal; }
+.tt-banner { margin: 0; font: 700 16px/18px var(--font-mono); white-space: pre; letter-spacing: 0; color: var(--tinta); }
+.tt-banner b { font-weight: 400; color: var(--tinta-3); }
+.tt-cita { margin: 0; font: 400 16px/26px var(--font-serif); }
+.tt-cita::before { content: "«"; } .tt-cita::after { content: "»"; }
+.tt-lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.tt-etapas { margin: 0; padding: 0; list-style: none; }
+.tt-etapas li { display: grid; grid-template-columns: 9ch minmax(0, 1fr) 17ch 6ch; column-gap: 1ch; align-items: baseline; }
+.tt-etapas__nombre { font-weight: 700; }
+.tt-etapas__que { font: 400 15px/22px var(--font-serif); color: var(--tinta-2); font-variant-ligatures: normal; font-feature-settings: normal; }
+.tt-etapas__barra { white-space: pre; letter-spacing: 0; }
+.tt-etapas__s { text-align: right; color: var(--tinta-2); }
+.tt-etapas__union { color: var(--tinta-3); white-space: pre; }
+.tt-modelo { color: var(--tinta); font-weight: 700; }
+.tt-enlace { color: var(--tinta); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.tt-enlace:hover { background: var(--resaltador); color: var(--sobre-resaltador); }
+@media (max-width: 700px) { .tt-etapas li { grid-template-columns: 9ch minmax(0, 1fr); } .tt-etapas__barra, .tt-etapas__s { grid-column: 2; } }

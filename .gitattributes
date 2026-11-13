@@ -1,0 +1,5 @@
+# La entrega y la caché se guardan tal cual, byte a byte, en cualquier sistema: sin convertir los fines de línea.
+entrega/** -text
+cache/** -text
+*.sh text eol=lf
+*.bat text eol=crlf
